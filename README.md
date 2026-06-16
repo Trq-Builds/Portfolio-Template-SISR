@@ -257,6 +257,147 @@ Si une fonctionnalité future nécessite une API (formulaire de contact, analyti
 
 ---
 
+**Point critique avant de rédiger** : la documentation officielle confirme que l'intégration GitHub dans les Projets Claude est disponible sur **tous les plans y compris Free** (pas réservée Pro/Team). La lecture est bien en lecture seule — seuls fichiers et contenus, pas les commits, PRs ni metadata. Données vérifiées, bloc rédigé ci-dessous.
+
+---
+
+**Insertion** : Ce bloc s'insère **après la section `## Déploiement et Configuration` (fin de l'étape 7 — Variables d'environnement) et avant la section `## Contribution`.**
+
+---
+
+```markdown
+---
+
+## `  ⚫  `︲Workflow Claude × GitHub — Intégration Projets
+
+> Intégration native Claude.ai — disponible sur tous les plans (Free inclus). Beta active.
+
+### Prérequis
+
+| Élément | Détail |
+|---|---|
+| Compte Claude.ai | Free, Pro, Team ou Enterprise — l'intégration est universelle |
+| Compte GitHub | Public ou privé (dépôts privés nécessitent une étape de droits supplémentaire) |
+| Droits GitHub | Admin du dépôt OU membre d'une org dont un admin a autorisé l'app Claude |
+| Projet Claude | Créé au préalable dans claude.ai/projects |
+
+> **Note SISR** : L'intégration passe par une GitHub App officielle d'Anthropic — pas un token PAT exposé côté client. Le flux d'authentification est OAuth, délégué à GitHub. Aucune clé ne transite dans le navigateur.
+
+---
+
+### Configuration — Connexion dépôt → Projet
+
+**1. Créer le Projet Claude**
+
+```
+claude.ai → "Projets" → "Nouveau projet"
+Nommer : Portfolio-Dev (ou tout identifiant métier)
+```
+
+**2. Ouvrir la section Project Knowledge**
+
+```
+Panneau latéral droit → "+" (coin supérieur droit de la zone Knowledge)
+→ Sélectionner "GitHub" dans le menu déroulant
+```
+
+**3. Authentifier GitHub (premier usage)**
+
+Si non authentifié, redirection OAuth automatique vers GitHub.
+Autoriser l'app Claude → retour automatique vers claude.ai.
+
+**4. Connecter le dépôt**
+
+```
+Recherche par nom → sélectionner le dépôt
+OU
+Coller l'URL directe : https://github.com/Trq-Builds/2025-Portfolio-V1.8
+```
+
+**5. Dépôt privé — déblocage des droits**
+
+Si le dépôt est privé et inaccessible après URL valide :
+
+```
+→ Suivre le lien "GitHub App" affiché par Claude
+→ Settings GitHub App → Repository Access
+→ Choisir : "All repositories" ou whitelist explicite
+→ Sauvegarder → retour sur Claude → réessayer
+```
+
+Si l'organisation bloque l'accès : une demande d'autorisation est envoyée par email aux admins org — attendre validation.
+
+**6. Sélection granulaire des fichiers**
+
+```
+File browser → sélectionner :
+  ✓ assets/js/data.js
+  ✓ assets/js/main.js
+  ✓ assets/css/style.css
+  ✗ assets/images/ (binaires — inutiles dans le contexte)
+  ✗ node_modules/  (si présent — jamais inclure)
+```
+
+Sélectionner uniquement ce qui est pertinent pour la session en cours. Chaque fichier consomme du contexte.
+
+**7. Synchroniser**
+
+```
+Icône "Sync" → "Sync now"
+→ Récupère l'état HEAD du dépôt sur la branche par défaut
+```
+
+---
+
+### Workflow de développement au quotidien
+
+```text
+Cycle type d'une session de travail :
+
+1. Ouvrir le Projet Claude → vérifier l'état de sync (date affichée)
+2. Si commits récents sur main → "Sync now" avant toute question
+3. Poser les questions dans le contexte du projet
+   → Claude a accès aux fichiers sélectionnés en Knowledge
+4. Implémenter les modifications en local (VSCodium)
+5. Git commit + push → GitHub
+6. Retour sur Claude → "Sync now" pour la session suivante
+```
+
+**Raccourcis utiles en session**
+
+| Action | Déclencheur |
+|---|---|
+| Ajouter un fichier ponctuel | "+" → "Add from GitHub" dans le chat (hors Knowledge) |
+| Modifier la sélection | Icône "Configure files" sur le connecteur |
+| Révoquer l'accès | GitHub → Settings → Applications → Claude → Revoke |
+
+---
+
+### Limites techniques et sécurité
+
+**Ce que l'intégration lit**
+
+```text
+✓ Noms de fichiers
+✓ Contenu des fichiers (branche par défaut, HEAD)
+✗ Historique des commits
+✗ Pull Requests et Issues
+✗ Metadata (auteurs, dates, branches)
+✗ GitHub Actions / secrets CI
+```
+
+**Flux unidirectionnel — lecture seule**
+
+L'intégration Projects est strictement **read-only**. Claude lit le contenu des fichiers sélectionnés. Il ne peut pas pousser, créer de branche, ouvrir une PR ou modifier quoi que ce soit sur le dépôt via cette interface.
+
+> À ne pas confondre avec **Claude Code** (outil CLI séparé) qui lui peut écrire, exécuter et interagir avec le dépôt via une GitHub App distincte et un workflow `CLAUDE.yml` à déployer manuellement.
+
+**Contrainte de contexte**
+
+La fenêtre de contexte d'un Projet est partagée entre la Knowledge (fichiers GitHub) et la conversation. Un dépôt volumineux saturera le contexte. Stratégie : sélection chirurgicale des fichiers — toujours préférer moins de fichiers, mieux ciblés.
+
+---
+
 ## `  ⚪  `︲Contribution
 
 Le projet est ouvert aux contributions. Quelques règles non négociables avant de soumettre une PR :
