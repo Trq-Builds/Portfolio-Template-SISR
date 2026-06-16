@@ -1,7 +1,7 @@
 # `  ⚫  `︲`  ⚪  ` Portfolio-Template-SISR
 
 <p align="center">
-Achromatique ︲ Lavande ︲ SPA Statique · Zéro Framework
+SPA Statique · HTML CSS JS PUR
 </p>
 
 <p align="center">
