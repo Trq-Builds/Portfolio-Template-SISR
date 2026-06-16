@@ -1,4 +1,4 @@
-# `  ⚫  `︲`  ⚪  ` Portfolio 
+# `  ⚫  `︲`  ⚪  ` Portfolio  Tariq.L
 
 <p align="center">
 Achromatique ︲ Lavande ︲ SPA Statique · Zéro Framework
@@ -139,10 +139,6 @@ Aucun `getBoundingClientRect`, aucun `reflow` JS. Délégation d'événement uni
 ### Filtres Portfolio
 
 Filtrage par catégorie (`Windows`, `Linux`, `Autre`) via `data-filter` attributes. Animation `scaleUp` à l'apparition des items  `transform + opacity` uniquement.
-
-### Easter Egg Avatar
-
-80+ citations chargées uniquement au premier clic (allocation lazy). `dismissTimer` avec `clearTimeout` pour éviter les fuites. Détection clic extérieur via `pointerdown` sur `document`.
 
 ---
 
@@ -298,17 +294,17 @@ git commit -m "perf(main): lazy render section veille"
 
 ## `  ⚫  `︲Stack & Outils
 
-```text
-Frontend   : HTML5 · CSS3 Custom Properties · JS ES6+ Modules (import/export natif)
-Animations : CSS @keyframes (transform + opacity  GPU-safe uniquement)
-Icons      : Ionicons 5.5.2 (ESM, chargé via unpkg CDN)
-Fonts      : Google Fonts  Poppins (300/400/500/600)
-Hosting    : Netlify (Manual Deploy  HTTPS  CDN Edge)
-Versioning : GitHub
-IDE        : VSCodium (thème : Monochromator Dark Plain)
-IAs        : Claude Sonnet · GPT-5.1 · Gemini 3.0 Pro
+```
+Frontend    : HTML5 · CSS3 Custom Properties · JS ES6+ Modules (import/export natif)
+Animations  : CSS @keyframes (transform + opacity  GPU-safe uniquement)
+Icons       : Ionicons 5.5.2 (ESM, chargé via unpkg CDN)
+Fonts       : Google Fonts  Poppins (300/400/500/600)
+Hosting     : Netlify (Manual Deploy  HTTPS  CDN Edge)
+Versioning  : GitHub
+IDE         : VSCodium (thème : Monochromator Dark Plain)
+Live Server : Extension VSCodium · Serveur local de développement (Hot Reload synchrone)
+XnConvert   : Traitement par lots · Encodage WebP (Lossy 75 / Lossless) · Purge des métadonnées (EXIF/ICC)
+IAs         : Claude Sonnet · GPT-5.1 · Gemini 3.0 Pro
 ```
 
 ---
-
-`  🟣  `︲**Live :** https://tariq-laab.netlify.app ︲ **Source :** https://github.com/Trq-Builds
