@@ -13,7 +13,7 @@ SPA Statique · HTML CSS JS PUR
 </p>
 
 ---
-`  🌐  `︲**Démo Technique basique : 
+`  🌐  `︲**Démo Technique basique :** https://portfolio-template-sisr.netlify.app
 
 `  🌐  `︲**Démo technique concrète :** https://tariq-laab.netlify.app
 
