@@ -8,7 +8,6 @@ SPA Statique · HTML CSS JS PUR
   <img src="https://img.shields.io/website?url=https://tariq-laab.netlify.app&label=deploy&style=for-the-badge">
   <img src="https://img.shields.io/badge/stack-HTML5%2FCSS3%2FJS_ES6+-informational?style=for-the-badge">
   <img src="https://img.shields.io/badge/hosting-Netlify_CDN-00C7B7?style=for-the-badge&logo=netlify">
-  <img src="https://img.shields.io/badge/BTS_SIO-SISR_E5_2026-8E95E1?style=for-the-badge">
   <img src="https://img.shields.io/badge/open--source-MIT-lightgrey?style=for-the-badge">
 </p>
 
