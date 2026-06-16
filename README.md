@@ -14,7 +14,7 @@ Achromatique ︲ Lavande ︲ SPA Statique · Zéro Framework
 
 ---
 
-`  🌐  `︲**Démo Technique :** https://tariq-laab.netlify.app
+`  🌐  `︲**Démo Technique :** portfolio-template-sisr.netlify.app
 
 `  🌐  `︲**Démo Technique concrète :** https://tariq-laab.netlify.app
 
