@@ -14,7 +14,9 @@ Achromatique ︲ Lavande ︲ SPA Statique · Zéro Framework
 
 ---
 
-`  🌐  `︲**Live :** https://tariq-laab.netlify.app
+`  🌐  `︲**Démo Technique :** https://tariq-laab.netlify.app
+
+`  🌐  `︲**Démo Technique concrète :** https://tariq-laab.netlify.app
 
 `  🟣  `︲**Fork base :** [codewithsadee/vcard-personal-portfolio](https://github.com/codewithsadee/vcard-personal-portfolio)
 
