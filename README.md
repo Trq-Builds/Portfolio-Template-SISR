@@ -432,10 +432,8 @@ Icons       : Ionicons 5.5.2 (ESM, chargé via unpkg CDN)
 Fonts       : Google Fonts  Poppins (300/400/500/600)
 Hosting     : Netlify (Manual Deploy  HTTPS  CDN Edge)
 Versioning  : GitHub
-IDE         : VSCodium (thème : Monochromator Dark Plain)
 Live Server : Extension VSCodium · Serveur local de développement (Hot Reload synchrone)
 XnConvert   : Traitement par lots · Encodage WebP (Lossy 75 / Lossless) · Purge des métadonnées (EXIF/ICC)
-IAs         : Claude Sonnet · GPT-5.1 · Gemini 3.0 Pro
 ```
 
 ---
