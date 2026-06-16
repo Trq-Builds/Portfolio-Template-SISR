@@ -1,4 +1,4 @@
-# `  ⚫  `︲`  ⚪  ` Portfolio — Tariq LAABOUDI
+# `  ⚫  `︲`  ⚪  ` Portfolio 
 
 <p align="center">
 Achromatique ︲ Lavande ︲ SPA Statique · Zéro Framework
@@ -25,7 +25,7 @@ Achromatique ︲ Lavande ︲ SPA Statique · Zéro Framework
 Portfolio personnel d'un étudiant BTS SIO option SISR (Solutions d'Infrastructure, Systèmes et Réseaux), développé entièrement sans framework. Le projet sert trois objectifs distincts :
 
 - **Vitrine professionnelle** : parcours, compétences, stages, certifications et productions techniques accessibles en un point unique.
-- **Démonstration technique** : architecture SPA pilotée par données, rendu DOM lazy, système de thème dual-mode — le code est la preuve de compétence.
+- **Démonstration technique** : architecture SPA pilotée par données, rendu DOM lazy, système de thème dual-mode  le code est la preuve de compétence.
 - **Ressource pédagogique open-source** : chaque décision d'architecture est documentée pour qu'un étudiant SISR puisse reproduire, forker et adapter le projet dans le cadre de ses activités E4/E5.
 
 Le projet n'embarque aucune dépendance runtime. Aucun `npm install` requis pour faire tourner le site. Un navigateur suffit.
@@ -49,7 +49,7 @@ Le projet n'embarque aucune dépendance runtime. Aucun `npm install` requis pour
               └────────────────┘
 ```
 
-`index.html` est un shell vide. Aucun contenu statique — tous les nœuds DOM (navbar, sidebar, sections) sont injectés au `DOMContentLoaded` depuis `data.js`.
+`index.html` est un shell vide. Aucun contenu statique  tous les nœuds DOM (navbar, sidebar, sections) sont injectés au `DOMContentLoaded` depuis `data.js`.
 
 ### Responsabilités des modules
 
@@ -65,7 +65,7 @@ Le projet n'embarque aucune dépendance runtime. Aucun `npm install` requis pour
 Les sections ne sont pas rendues au chargement. `SECTION_RENDERERS` est une `Map` id → fonction. `RENDERED` est un `Set`. Au premier clic sur une nav, `renderSection(id)` vérifie le Set en O(1) avant d'injecter.
 
 ```js
-// Guard O(1) — aucune re-exécution, aucune double injection
+// Guard O(1)  aucune re-exécution, aucune double injection
 function renderSection(id) {
   if (RENDERED.has(id)) return;
   RENDERED.add(id);
@@ -77,12 +77,12 @@ Résultat : seul `about` est rendu au load. Le reste est différé jusqu'au beso
 
 ### Infrastructure CSS
 
-- **Custom Properties** : palette dual-mode (`--bg-body`, `--text-primary`, `--brand`, `--shadow-*`) — toutes les valeurs sémantiques sont des tokens, zéro valeur hardcodée dans les règles.
+- **Custom Properties** : palette dual-mode (`--bg-body`, `--text-primary`, `--brand`, `--shadow-*`)  toutes les valeurs sémantiques sont des tokens, zéro valeur hardcodée dans les règles.
 - **Dark Mode** : sélecteur `body.dark-mode` unique, swap de surface et d'ombres exclusivement. Zéro duplication de règles structurelles.
-- **Animations** : `@keyframes fade` (opacity + translateY) et `scaleUp` (transform + opacity) — exclusivement GPU-safe. Zéro `reflow`.
-- **Typographie fluide** : `clamp(min, vw, max)` sur les titres — responsive sans media query dédiée.
+- **Animations** : `@keyframes fade` (opacity + translateY) et `scaleUp` (transform + opacity)  exclusivement GPU-safe. Zéro `reflow`.
+- **Typographie fluide** : `clamp(min, vw, max)` sur les titres  responsive sans media query dédiée.
 - **Responsive** : Mobile-first, breakpoints consolidés à `480px / 580px / 720px / 1024px / 1250px` dans un bloc unique en fin de fichier.
-- **Sidebar sticky** : `position: sticky; top: 60px` en wide (≥1250px) — zéro JavaScript impliqué.
+- **Sidebar sticky** : `position: sticky; top: 60px` en wide (≥1250px)  zéro JavaScript impliqué.
 
 ### Infrastructure de déploiement (pertinent SISR)
 
@@ -105,7 +105,7 @@ Poste local
                               └── URL : https://tariq-laab.netlify.app
 ```
 
-**Protocole de déploiement actuel** : manuel via drag & drop Netlify après validation locale. Zéro CI/CD automatisé — déploiement déclenché intentionnellement.
+**Protocole de déploiement actuel** : manuel via drag & drop Netlify après validation locale. Zéro CI/CD automatisé  déploiement déclenché intentionnellement.
 
 ---
 
@@ -113,11 +113,11 @@ Poste local
 
 ### Routage SPA sans framework
 
-Navigation entre 8 sections (`À propos`, `Parcours`, `Stage`, `Certifications`, `Veille`, `Outils`, `Matériel`, `Portfolio`) sans rechargement de page. Historique non géré (pas de `history.pushState`) — choix délibéré pour un portfolio statique sans backend.
+Navigation entre 8 sections (`À propos`, `Parcours`, `Stage`, `Certifications`, `Veille`, `Outils`, `Matériel`, `Portfolio`) sans rechargement de page. Historique non géré (pas de `history.pushState`)  choix délibéré pour un portfolio statique sans backend.
 
 ### Système de thème dual-mode
 
-Persistance via `localStorage`. Swap simultané : couleurs CSS, avatar (`avatar-light.webp` ↔ `avatar-dark.webp`), favicon (`.ico` dark/light). Transition CSS sur `background-color` et `color` à `0.35s ease` — zéro flash au rechargement.
+Persistance via `localStorage`. Swap simultané : couleurs CSS, avatar (`avatar-light.webp` ↔ `avatar-dark.webp`), favicon (`.ico` dark/light). Transition CSS sur `background-color` et `color` à `0.35s ease`  zéro flash au rechargement.
 
 ### Accordéon expandable (CSS Grid Trick)
 
@@ -134,11 +134,11 @@ Révélation de contenu sans hauteur hardcodée :
 }
 ```
 
-Aucun `getBoundingClientRect`, aucun `reflow` JS. Délégation d'événement unique sur le container parent — O(1) peu importe le nombre de cartes.
+Aucun `getBoundingClientRect`, aucun `reflow` JS. Délégation d'événement unique sur le container parent  O(1) peu importe le nombre de cartes.
 
 ### Filtres Portfolio
 
-Filtrage par catégorie (`Windows`, `Linux`, `Autre`) via `data-filter` attributes. Animation `scaleUp` à l'apparition des items — `transform + opacity` uniquement.
+Filtrage par catégorie (`Windows`, `Linux`, `Autre`) via `data-filter` attributes. Animation `scaleUp` à l'apparition des items  `transform + opacity` uniquement.
 
 ### Easter Egg Avatar
 
@@ -170,15 +170,15 @@ cd 2025-Portfolio-V1.8
 ### 2. Lancer en local
 
 ```bash
-# Option A — Node.js disponible
+# Option A  Node.js disponible
 npx serve .
 # → http://localhost:3000
 
-# Option B — Python disponible
+# Option B  Python disponible
 python -m http.server 8080
 # → http://localhost:8080
 
-# Option C — Extension VS Code
+# Option C  Extension VS Code
 # Installer "Live Server" → clic droit sur index.html → "Open with Live Server"
 ```
 
@@ -219,7 +219,7 @@ Format recommandé pour les avatars : `.webp`, 150×150px minimum, fond transpar
 1. Se connecter sur [app.netlify.com](https://app.netlify.com)
 2. Aller dans "Sites" → "Add new site" → "Deploy manually"
 3. Glisser-déposer le dossier racine du projet
-4. URL générée automatiquement — personnalisable dans les paramètres du site
+4. URL générée automatiquement  personnalisable dans les paramètres du site
 
 **Méthode CLI**
 
@@ -231,7 +231,7 @@ netlify deploy --prod --dir .
 
 ### 6. Sécurité et en-têtes HTTP (netlify.toml)
 
-Pour ajouter des en-têtes de sécurité HTTP (pertinent pour les étudiants SISR — notions de hardening web), créer un fichier `netlify.toml` à la racine :
+Pour ajouter des en-têtes de sécurité HTTP (pertinent pour les étudiants SISR  notions de hardening web), créer un fichier `netlify.toml` à la racine :
 
 ```toml
 [[headers]]
@@ -255,9 +255,9 @@ Pour ajouter des en-têtes de sécurité HTTP (pertinent pour les étudiants SIS
 
 ### 7. Variables d'environnement
 
-Ce projet n'utilise **aucune variable d'environnement** côté client — par conception. Un portfolio statique ne doit embarquer aucun secret dans le bundle JS (clé API, token) : tout secret dans un fichier `.js` servi publiquement est lisible par n'importe qui via les DevTools.
+Ce projet n'utilise **aucune variable d'environnement** côté client  par conception. Un portfolio statique ne doit embarquer aucun secret dans le bundle JS (clé API, token) : tout secret dans un fichier `.js` servi publiquement est lisible par n'importe qui via les DevTools.
 
-Si une fonctionnalité future nécessite une API (formulaire de contact, analytics), la logique doit passer par une **Netlify Function** (lambda serverless) qui seule détient les variables d'environnement configurées dans le dashboard Netlify — jamais côté client.
+Si une fonctionnalité future nécessite une API (formulaire de contact, analytics), la logique doit passer par une **Netlify Function** (lambda serverless) qui seule détient les variables d'environnement configurées dans le dashboard Netlify  jamais côté client.
 
 ---
 
@@ -265,15 +265,15 @@ Si une fonctionnalité future nécessite une API (formulaire de contact, analyti
 
 Le projet est ouvert aux contributions. Quelques règles non négociables avant de soumettre une PR :
 
-**P0 — Architecture**
+**P0  Architecture**
 - Toute donnée nouvelle va dans `data.js`. Zéro contenu hardcodé dans `main.js` ou le HTML.
 - Zéro dépendance externe ajoutée sans justification documentée dans la PR.
 
-**P1 — CSS**
+**P1  CSS**
 - Zéro valeur hardcodée pour les couleurs, espacements ou rayons. Utiliser les tokens `:root` existants.
 - Toute animation doit n'utiliser que `transform` et/ou `opacity`. Un `reflow` introduit = PR rejetée.
 
-**P2 — JS**
+**P2  JS**
 - Accès DOM toujours gardé (optional chaining ou guard `if`).
 - Tout nouveau listener sur un `NodeList` doit utiliser la délégation d'événement sur le parent, pas une boucle d'attachement.
 
@@ -300,10 +300,10 @@ git commit -m "perf(main): lazy render section veille"
 
 ```text
 Frontend   : HTML5 · CSS3 Custom Properties · JS ES6+ Modules (import/export natif)
-Animations : CSS @keyframes (transform + opacity — GPU-safe uniquement)
+Animations : CSS @keyframes (transform + opacity  GPU-safe uniquement)
 Icons      : Ionicons 5.5.2 (ESM, chargé via unpkg CDN)
-Fonts      : Google Fonts — Poppins (300/400/500/600)
-Hosting    : Netlify (Manual Deploy — HTTPS — CDN Edge)
+Fonts      : Google Fonts  Poppins (300/400/500/600)
+Hosting    : Netlify (Manual Deploy  HTTPS  CDN Edge)
 Versioning : GitHub
 IDE        : VSCodium (thème : Monochromator Dark Plain)
 IAs        : Claude Sonnet · GPT-5.1 · Gemini 3.0 Pro
