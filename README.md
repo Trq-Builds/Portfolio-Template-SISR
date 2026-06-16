@@ -257,17 +257,6 @@ Si une fonctionnalité future nécessite une API (formulaire de contact, analyti
 
 ---
 
-**Point critique avant de rédiger** : la documentation officielle confirme que l'intégration GitHub dans les Projets Claude est disponible sur **tous les plans y compris Free** (pas réservée Pro/Team). La lecture est bien en lecture seule — seuls fichiers et contenus, pas les commits, PRs ni metadata. Données vérifiées, bloc rédigé ci-dessous.
-
----
-
-**Insertion** : Ce bloc s'insère **après la section `## Déploiement et Configuration` (fin de l'étape 7 — Variables d'environnement) et avant la section `## Contribution`.**
-
----
-
-```markdown
----
-
 ## `  ⚫  `︲Workflow Claude × GitHub — Intégration Projets
 
 > Intégration native Claude.ai — disponible sur tous les plans (Free inclus). Beta active.
