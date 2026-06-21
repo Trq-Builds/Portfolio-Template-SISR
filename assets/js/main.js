@@ -1078,4 +1078,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setupNavigation();        // Active la navigation entre sections
   setupSidebar();           // Active le toggle mobile de la sidebar
+
+  setupThemeToggle();       // Active le toggle du thème (dark/light mode)
 });
+
+/*───────────────────────────────────────────────────────────────────
+  setupThemeToggle — Gestion du toggle du thème (dark/light mode)
+  ─────────────────────────────────────────────────────────────────
+  CE QUE FAIT CETTE FONCTION :
+  Attache un listener sur le bouton #themeToggle qui :
+  1. Bascule la classe "dark-mode" sur le body
+  2. Persiste le choix dans localStorage
+
+  NOTE : Le script d'amorçage dans index.html restaure le thème
+  AVANT le premier paint pour éviter tout FOUC (Flash of Unstyled Content).
+  Cette fonction ne gère que l'interaction utilisateur au clic.
+───────────────────────────────────────────────────────────────────*/
+function setupThemeToggle() {
+  const toggle = document.getElementById('themeToggle');
+  if (!toggle) {
+    console.warn('[main.js] Toggle button #themeToggle not found');
+    return;
+  }
+
+  toggle.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem(
+      'theme',
+      document.body.classList.contains('dark-mode') ? 'dark' : 'light'
+    );
+  });
+}

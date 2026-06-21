@@ -16,7 +16,7 @@ SPA Statique · Zéro Framework
 
 `  🌐  `︲**Démo Technique :** https://portfolio-template-sisr.netlify.app
 
-`  🌐  `︲**Démo Technique concrète :** https://tariq-laab.netlify.app
+ `  🌐  `︲**Démo Technique concrète :** <YOUR_NETLIFY_URL>
 
 `  🟣  `︲**Fork base :** [codewithsadee/vcard-personal-portfolio](https://github.com/codewithsadee/vcard-personal-portfolio)
 
@@ -104,7 +104,7 @@ Poste local
                               ├── CDN global (Edge Nodes distribués)
                               ├── HTTPS automatique (Let's Encrypt)
                               ├── Headers de sécurité configurables (netlify.toml)
-                              └── URL : https://tariq-laab.netlify.app
+                               └── URL : <YOUR_NETLIFY_URL>
 ```
 
 **Protocole de déploiement actuel** : manuel via drag & drop Netlify après validation locale. Zéro CI/CD automatisé  déploiement déclenché intentionnellement.
@@ -161,7 +161,7 @@ Filtrage par catégorie (`Windows`, `Linux`, `Autre`) via `data-filter` attribut
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/Trq-Builds/2025-Portfolio-V1.8.git
+git clone <YOUR_GITHUB_URL>.git
 cd 2025-Portfolio-V1.8
 ```
 
@@ -249,7 +249,7 @@ Pour ajouter des en-têtes de sécurité HTTP (pertinent pour les étudiants SIS
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'"
 ```
 
-> **Point SISR** : Ces en-têtes sont vérifiables via `curl -I https://tariq-laab.netlify.app` ou via l'onglet Réseau des DevTools. Ils correspondent aux bonnes pratiques ANSSI pour les sites web exposés.
+> **Point SISR** : Ces en-têtes sont vérifiables via `curl -I <YOUR_NETLIFY_URL>` ou via l'onglet Réseau des DevTools. Ils correspondent aux bonnes pratiques ANSSI pour les sites web exposés.
 
 ### 7. Variables d'environnement
 
@@ -302,7 +302,7 @@ Autoriser l'app Claude → retour automatique vers claude.ai.
 ```
 Recherche par nom → sélectionner le dépôt
 OU
-Coller l'URL directe : https://github.com/Trq-Builds/2025-Portfolio-V1.8
+Coller l'URL directe : <YOUR_GITHUB_URL>
 ```
 
 **5. Dépôt privé — déblocage des droits**
@@ -409,7 +409,7 @@ Le projet est ouvert aux contributions. Quelques règles non négociables avant 
 
 ```bash
 # 1. Fork → Clone
-git clone https://github.com/<ton-pseudo>/2025-Portfolio-V1.8.git
+git clone <YOUR_GITHUB_URL>
 
 # 2. Branche dédiée
 git checkout -b feature/nom-explicite
