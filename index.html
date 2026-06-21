@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!--
+  ═══════════════════════════════════════════════════════════════
+  INDEX.HTML — Template Portfolio SIO SISR
+  ─────────────────────────────────────────────────────────────
+  RÔLE DE CE FICHIER :
+  Ce fichier est le "squelette" de l'application. Il définit
+  uniquement la structure HTML — aucun contenu éditorial n'est
+  écrit ici en dur.
+
+  COMMENT LE CONTENU ARRIVE DANS LA PAGE :
+  Tout le contenu visible (nom, projets, compétences…) est
+  injecté dynamiquement par assets/js/main.js au chargement.
+  main.js lit les données depuis assets/js/data.js et construit
+  le HTML à la volée.
+
+  POUR PERSONNALISER LE CONTENU : modifier uniquement data.js.
+  POUR MODIFIER LA STRUCTURE : modifier ce fichier.
+  POUR MODIFIER LE STYLE : modifier assets/css/style.css.
+
+  ARCHITECTURE DES FICHIERS :
+  ┌─────────────┐     ┌──────────┐     ┌─────────────────┐
+  │   data.js   │────▶│  main.js │────▶│   index.html    │
+  │  (contenu)  │     │(logique) │     │  (structure)    │
+  └─────────────┘     └──────────┘     └─────────────────┘
+  ═══════════════════════════════════════════════════════════════
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prénom Nom — Portfolio BTS SIO SISR</title>
+  <meta name="description"
+    content="[PLACEHOLDER] Décrivez ici votre portfolio en 150 caractères : votre spécialité, vos compétences clés et ce que le visiteur va trouver.">
+
+  <link rel="shortcut icon" id="favicon" href="./assets/images/favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="./assets/images/avatar.webp">
+</head>
+
+<body>
+
+  <!-- ═══ SCRIPT D'AMORÇAGE DU THÈME ═══
+       Placé en tête de <body> : document.body est désormais disponible,
+       et aucun contenu visible n'est encore peint → pas de FOUC.
+       RÔLE : si l'utilisateur a déjà choisi le thème sombre (clé
+       localStorage 'theme' === 'dark'), on applique la classe
+       dark-mode AVANT le premier paint. -->
+  <script>
+    (function () {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
+
+  <button class="theme-toggle" id="themeToggle" aria-label="Basculer entre le thème clair et sombre">
+    <span class="sun" aria-hidden="true">⚪</span>
+    <span class="moon" aria-hidden="true">⚫</span>
+  </button>
+
+  <main>
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="" alt="Photo de profil" width="80" height="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Votre nom complet"></h1>
+          <p class="title">Étudiant BTS SIO</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Contacts</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div><!-- /sidebar-info -->
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list"></ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list"></ul>
+
+      </div><!-- /sidebar-info_more -->
+
+    </aside><!-- /sidebar -->
+
+    <div class="main-content">
+
+      <nav class="navbar">
+        <ul class="navbar-list"></ul>
+      </nav>
+
+      <article class="about active" data-page="about">
+        <header>
+          <h2 class="h2 article-title">À propos de moi</h2>
+        </header>
+        <div class="about-text"></div>
+      </article>
+
+      <article class="resume" data-page="resume">
+        <header>
+          <h2 class="h2 article-title">Parcours</h2>
+        </header>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Formation</h3>
+          </div>
+          <ol class="timeline-list education-list"></ol>
+        </section>
+
+        <section class="timeline">
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Expériences</h3>
+          </div>
+          <ol class="timeline-list experience-list"></ol>
+        </section>
+
+        <section class="skill">
+          <h3 class="h3 skills-title">Compétences</h3>
+          <ul class="skills-list content-card"></ul>
+        </section>
+
+      </article>
+
+      <article class="stage" data-page="stage">
+        <header>
+          <h2 class="h2 article-title">Stage</h2>
+        </header>
+        <ul class="stage-list"></ul>
+      </article>
+
+      <article class="certifications" data-page="certifications">
+        <header>
+          <h2 class="h2 article-title">Certifications</h2>
+        </header>
+        <p class="section-text">
+          Certifications obtenues et en cours de préparation.
+        </p>
+        <div class="certifications-target"></div>
+      </article>
+
+      <article class="veille" data-page="veille">
+        <header>
+          <h2 class="h2 article-title">Veille informatique</h2>
+        </header>
+        <ul class="veille-list tools-list"></ul>
+      </article>
+
+      <article class="outils" data-page="outils">
+        <header>
+          <h2 class="h2 article-title">Outils</h2>
+        </header>
+        <p class="section-text">
+          Outils et logiciels utilisés au quotidien, organisés par catégorie.
+        </p>
+        <div class="outils-target"></div>
+      </article>
+
+      <article class="materiel" data-page="materiel">
+        <header>
+          <h2 class="h2 article-title">Matériel</h2>
+        </header>
+        <p class="section-text">
+          Configuration matérielle et équipements utilisés.
+        </p>
+        <div class="materiel-target"></div>
+      </article>
+
+      <article class="portfolio" data-page="portfolio">
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list"></ul>
+
+          <ul class="project-list"></ul>
+
+        </section>
+      </article>
+
+    </div><!-- /main-content -->
+
+  </main>
+
+  <!-- ═══ SCRIPT DE L'ÉCOUTEUR DU TOGGLE (PLACÉ ICI POUR GARANTIR L'EXISTENCE DU BOUTON) ═══ -->
+  <script>
+    (function () {
+      const toggle = document.getElementById('themeToggle');
+      if (!toggle) {
+        console.warn('Toggle button not found');
+        return;
+      }
+
+      toggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem(
+          'theme',
+          document.body.classList.contains('dark-mode') ? 'dark' : 'light'
+        );
+      });
+    })();
+  </script>
+
+  <script type="module" src="./assets/js/main.js"></script>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
