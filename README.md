@@ -19,6 +19,11 @@ SPA Statique · Zéro Framework
 
 ---
 
+<img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/03b6c0f5-46a9-49fd-9835-0b95a1fc5433" />
+
+
+---
+
 ## `  ⚫  `︲Présentation Générale & Objectifs
 
 Template de portfolio personnel pour étudiant BTS SIO option SISR (Solutions d'Infrastructure, Systèmes et Réseaux), développé entièrement sans framework. Le projet sert trois objectifs distincts :
