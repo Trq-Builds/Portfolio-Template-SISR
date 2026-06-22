@@ -81,10 +81,10 @@ Résultat : seul `about` est rendu au load. Le reste est différé jusqu'au beso
 Poste local
 │
 ├── Édition VSCodium
-├── Prévisualisation : fichier ouvert directement dans navigateur (file://)
+├── Prévisualisation : extension Live Server (méthode recommandée)
 │     ⚠ Note : les modules ES6 (import/export) nécessitent un serveur HTTP local
 │               pour contourner la restriction CORS sur file://
-│               → utiliser : npx serve . ou l'extension Live Server
+│               → utiliser : Live Server (VSCodium) ou npx serve .
 │
 └── Git Push ──► GitHub (dépôt source, versioning)
                     │
@@ -141,32 +141,46 @@ Filtrage par catégorie (`Windows`, `Linux`, `Réseau`…) via `data-filter` att
 |---|---|---|
 | Navigateur moderne | Prévisualisation locale | Oui |
 | Git | Versioning et push GitHub | Oui |
-| Node.js (optionnel) | Serveur local HTTP pour modules ES6 | Recommandé |
+| Node.js (optionnel) | Serveur local HTTP alternatif pour modules ES6 | Optionnel |
 | Compte GitHub | Hébergement du code source | Oui |
 | Compte Netlify (gratuit) | Déploiement CDN HTTPS | Oui |
 
-> **Note SISR** : Node.js n'est pas une dépendance d'exécution du site. Il sert uniquement à lancer un serveur HTTP local (`npx serve .`) pour contourner la restriction CORS du protocole `file://` lors du dev avec modules ES6.
+> **Note SISR** : Git n'est pas obligatoire pour démarrer. Le code source est directement téléchargeable depuis la page **Releases** du projet (voir section suivante). Git devient nécessaire uniquement si vous souhaitez versionner vos modifications et publier via GitHub.
 
-### 1. Cloner le dépôt
+### 1. Récupérer le code source
+
+**Méthode A — Téléchargement direct depuis les Releases (recommandée, sans Git)**
+
+Aucun terminal requis. Rendez-vous sur la page **Releases** du dépôt GitHub, téléchargez l'archive au format de votre choix, puis extrayez-la dans le dossier de votre choix :
+
+| Format | Commande d'extraction (optionnelle) |
+|---|---|
+| `.zip` | Extraction native Windows / macOS / Linux |
+| `.tar.gz` | `tar -xzf portfolio-template-sisr.tar.gz` |
+| `.7z` | 7-Zip (Windows) ou `7z x portfolio-template-sisr.7z` |
+
+**Méthode B — Clone Git**
 
 ```bash
 git clone https://github.com/votre-pseudo/portfolio-template-sisr.git
 cd portfolio-template-sisr
 ```
 
-### 2. Lancer en local
+### 2. Visualiser en local
+
+> **Méthode la plus simple : extension Live Server sur VSCodium.**
+> Ouvrir le dossier du projet dans VSCodium → clic droit sur `index.html` → **"Open with Live Server"**. Le navigateur s'ouvre automatiquement et se rafraîchit à chaque sauvegarde de fichier. Aucune commande terminal, aucune configuration supplémentaire.
+
+> **Pourquoi Live Server est obligatoire** : les modules ES6 natifs (`import/export`) sont bloqués par la politique CORS des navigateurs lorsque les fichiers sont ouverts en `file://`. Un serveur HTTP local contourne cette restriction. Live Server en est un.
 
 ```bash
-# Option A — Node.js disponible
+# Alternative A — Node.js disponible
 npx serve .
 # → http://localhost:3000
 
-# Option B — Python disponible
+# Alternative B — Python disponible
 python -m http.server 8080
 # → http://localhost:8080
-
-# Option C — Extension VS Code
-# Installer "Live Server" → clic droit sur index.html → "Open with Live Server"
 ```
 
 ### 3. Personnaliser le contenu
@@ -192,7 +206,7 @@ data.js
 assets/
 └── images/
     ├── avatar.webp     ← Photo de profil (WebP, 150×150px minimum)
-    └── favicon.ico     ← Icône de l'onglet navigateur (.ico - 32×32px)
+    └── favicon.ico     ← Icône de l'onglet navigateur (.ico 32x32px)
 ```
 
 Format recommandé pour l'avatar : `.webp`, 150×150px minimum, fond transparent ou uni.
@@ -205,6 +219,113 @@ Format recommandé pour l'avatar : `.webp`, 150×150px minimum, fond transparent
 2. Aller dans "Sites" → "Add new site" → "Deploy manually"
 3. Glisser-déposer le dossier racine du projet
 4. URL générée automatiquement — personnalisable dans les paramètres du site
+
+**Méthode CLI**
+
+```bash
+npm install -g netlify-cli
+netlify login
+netlify deploy --prod --dir .
+```
+
+## `  ⚪  `︲Workflow OpenCode — Modifications sans terminal
+
+> OpenCode est un agent de développement IA qui opère directement sur les fichiers du projet. Il permet de modifier, d'étendre et de déboguer le portfolio en langage naturel, sans manipuler le code manuellement.
+
+### Setup minimal
+
+**1. Télécharger OpenCode**
+
+Se rendre sur le site officiel d'OpenCode et télécharger l'installeur graphique correspondant au système d'exploitation (Windows, macOS ou Linux).
+
+**2. Installer et ouvrir le projet**
+
+Lancer l'exécutable téléchargé et suivre les étapes d'installation. Une fois l'application ouverte, pointer vers le dossier du projet extrait depuis l'archive téléchargée dans les **Releases** (`.zip`, `.7z` ou `.tar.gz`). Aucune commande terminal, aucun clone Git requis.
+
+OpenCode indexe automatiquement les fichiers du dossier ouvert. Aucune configuration supplémentaire n'est requise pour ce projet.
+
+### Exemples de requêtes
+
+```text
+# Ajouter un projet au portfolio
+"Ajoute un projet dans portfolioData avec le titre 'Mise en place VLAN',
+ la catégorie 'Réseau', l'image assets/images/projets/vlan.webp
+ et le lien https://github.com/votre-pseudo/vlan-project"
+
+# Modifier le profil
+"Remplace le nom dans profileData par 'Jean Dupont' et l'email
+ par jean.dupont@exemple.com"
+
+# Ajouter une certification
+"Ajoute une certification obtenue dans certificationsData :
+ nom 'Cisco CCNA', émetteur 'Cisco', date '2025',
+ description 'Certification réseau niveau associé'"
+
+# Ajouter une section de veille
+"Ajoute une nouvelle catégorie dans veilleData avec le titre
+ 'Virtualisation', l'icône 'cube-outline', et un premier item
+ nommé 'Proxmox VE' pointant vers https://www.proxmox.com"
+```
+
+### Règles à transmettre à OpenCode pour ce projet
+
+Coller ces contraintes en début de session pour aligner OpenCode avec l'architecture du projet :
+
+```text
+Règles du projet :
+- Toute donnée va exclusivement dans assets/js/data.js. Ne jamais hardcoder
+  de contenu dans main.js ou index.html.
+- Ne jamais utiliser de valeurs CSS en dur pour les couleurs, espacements
+  ou rayons. Utiliser uniquement les variables --* définies dans :root.
+- Toute animation doit n'affecter que transform et/ou opacity.
+- Tout accès DOM doit être gardé par optional chaining (?.) ou un guard if.
+```
+
+---
+
+## `  ⚪  `︲Workflow Claude — Modifications et nouvelles fonctionnalités
+
+> Claude peut être utilisé directement depuis [claude.ai](https://claude.ai) pour modifier le portfolio, intégrer de nouveaux projets ou implémenter de nouvelles fonctionnalités. La fonctionnalité **Projets** permet de connecter le dépôt GitHub directement à Claude, lui fournissant automatiquement tout le contexte technique nécessaire.
+
+### Méthode : Claude Projects + connexion GitHub
+
+**1. Créer un Projet dans Claude**
+
+Sur [claude.ai](https://claude.ai), aller dans "Projets" → "Nouveau projet". Nommer le projet (ex : `Portfolio-Dev`).
+
+**2. Connecter le dépôt GitHub**
+
+Dans le panneau latéral du projet, ouvrir la section **Project Knowledge** → cliquer sur "+" → sélectionner **GitHub**. Authentifier le compte GitHub via le flux OAuth si ce n'est pas déjà fait, puis rechercher et connecter le dépôt du portfolio.
+
+Cette connexion donne à Claude les droits de **lecture** sur l'ensemble des fichiers du projet — `data.js`, `main.js`, `style.css`, `index.html`. Claude dispose ainsi automatiquement de tout le contexte architectural nécessaire pour répondre avec précision, sans qu'il soit nécessaire de coller le contenu des fichiers dans chaque message.
+
+> **Limitation technique — lecture seule** : Claude ne peut pas écrire directement dans les fichiers ni pousser (`push`) de modifications sur le dépôt. Les suggestions de code retournées par Claude doivent être copiées manuellement et appliquées dans l'éditeur (VSCodium), puis sauvegardées — Live Server rafraîchit automatiquement.
+
+### Cas d'usage typiques
+
+| Objectif | Instruction type |
+|---|---|
+| Ajouter un projet portfolio | "Ajoute un projet dans portfolioData : titre 'Mise en place VLAN', catégorie 'Réseau', image assets/images/projets/vlan.webp, lien https://github.com/votre-pseudo/vlan" |
+| Ajouter une certification | "Ajoute une certification obtenue dans certificationsData : nom 'Cisco CCNA', émetteur 'Cisco', date '2025'" |
+| Modifier le texte À propos | "Réécris aboutData.text avec ces informations : …" |
+| Ajouter une compétence | "Ajoute la compétence 'Virtualisation' à 65% dans resumeData.skills" |
+| Implémenter une nouvelle fonctionnalité | Décrire le comportement attendu — Claude lit les fichiers concernés via la connexion GitHub et retourne le delta à appliquer |
+
+### Règles à transmettre à Claude pour ce projet
+
+Coller ce bloc en début de conversation pour aligner Claude avec l'architecture du projet :
+
+```text
+Règles du projet :
+- Toute donnée va exclusivement dans assets/js/data.js. Ne jamais hardcoder
+  de contenu dans main.js ou index.html.
+- Ne jamais utiliser de valeurs CSS en dur pour les couleurs, espacements
+  ou rayons. Utiliser uniquement les variables --* définies dans :root.
+- Toute animation doit n'affecter que transform et/ou opacity (GPU-safe).
+- Tout accès DOM doit être gardé par optional chaining (?.) ou un guard if.
+- Tout nouveau listener sur un NodeList doit utiliser la délégation
+  d'événement sur le parent, pas une boucle d'attachement.
+```
 
 ---
 
