@@ -20,7 +20,7 @@ SPA Statique · Zéro Framework
 ---
 
 <img width="1024" height="576" alt="image" src="https://github.com/user-attachments/assets/03b6c0f5-46a9-49fd-9835-0b95a1fc5433" />
-
+*Image générée par IA (Nano Banana - Gemini)
 
 ---
 
