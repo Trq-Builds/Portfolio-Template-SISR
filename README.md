@@ -339,5 +339,4 @@ Fonts       : Google Fonts — Poppins (300/400/500/600)
 Hosting     : Netlify (Manual Deploy — HTTPS — CDN Edge)
 Versioning  : GitHub
 ```
-
 ---
