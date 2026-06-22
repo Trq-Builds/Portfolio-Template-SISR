@@ -92,7 +92,6 @@ Poste local
                               │
                               ├── CDN global (Edge Nodes distribués)
                               ├── HTTPS automatique (Let's Encrypt)
-                              ├── Headers de sécurité configurables (netlify.toml)
                               └── URL : https://votre-pseudo.netlify.app
 ```
 
