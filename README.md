@@ -24,7 +24,7 @@ SPA Statique · Zéro Framework
 Template de portfolio personnel pour étudiant BTS SIO option SISR (Solutions d'Infrastructure, Systèmes et Réseaux), développé entièrement sans framework. Le projet sert trois objectifs distincts :
 
 - **Vitrine professionnelle** : parcours, compétences, stages, certifications et productions techniques accessibles en un point unique.
-- **Démonstration technique** : architecture SPA pilotée par données, rendu DOM lazy, système de thème dual-mode — le code est la preuve de compétence.
+- **Démonstration technique** : architecture SPA pilotée par données, rendu DOM lazy, système de thème dual-mode  le code est la preuve de compétence.
 - **Ressource pédagogique open-source** : chaque décision d'architecture est documentée pour qu'un étudiant SISR puisse reproduire, forker et adapter le projet dans le cadre de ses activités E4/E5.
 
 Le projet n'embarque aucune dépendance runtime. Aucun `npm install` requis pour faire tourner le site. Un navigateur suffit.
@@ -42,7 +42,7 @@ Le projet n'embarque aucune dépendance runtime. Aucun `npm install` requis pour
 └──────────┘      └──────────┘      └──────────┘      └──────────┘
 ```
 
-`index.html` est un shell vide. Aucun contenu statique — tous les nœuds DOM (navbar, sidebar, sections) sont injectés au `DOMContentLoaded` depuis `data.js`.
+`index.html` est un shell vide. Aucun contenu statique  tous les nœuds DOM (navbar, sidebar, sections) sont injectés au `DOMContentLoaded` depuis `data.js`.
 
 ### Responsabilités des modules
 
@@ -56,7 +56,7 @@ Le projet n'embarque aucune dépendance runtime. Aucun `npm install` requis pour
 Les sections ne sont pas rendues au chargement. `SECTION_RENDERERS` est une `Map` id → fonction. `RENDERED` est un `Set`. Au premier clic sur une nav, `renderSection(id)` vérifie le Set en O(1) avant d'injecter.
 
 ```js
-// Guard O(1) — aucune re-exécution, aucune double injection
+// Guard O(1)  aucune re-exécution, aucune double injection
 function renderSection(id) {
   if (RENDERED.has(id)) return;
   RENDERED.add(id);
@@ -68,12 +68,12 @@ Résultat : seul `about` est rendu au load. Le reste est différé jusqu'au beso
 
 ### Infrastructure CSS
 
-- **Custom Properties** : palette dual-mode (`--bg-body`, `--text-primary`, `--brand`, `--shadow-*`) — toutes les valeurs sémantiques sont des tokens, zéro valeur hardcodée dans les règles.
+- **Custom Properties** : palette dual-mode (`--bg-body`, `--text-primary`, `--brand`, `--shadow-*`)  toutes les valeurs sémantiques sont des tokens, zéro valeur hardcodée dans les règles.
 - **Dark Mode** : sélecteur `body.dark-mode` unique, swap de surface et d'ombres exclusivement. Zéro duplication de règles structurelles.
-- **Animations** : `@keyframes fade` (opacity + translateY) et `scaleUp` (transform + opacity) — exclusivement GPU-safe. Zéro `reflow`.
-- **Typographie fluide** : `clamp(min, vw, max)` sur les titres — responsive sans media query dédiée.
+- **Animations** : `@keyframes fade` (opacity + translateY) et `scaleUp` (transform + opacity)  exclusivement GPU-safe. Zéro `reflow`.
+- **Typographie fluide** : `clamp(min, vw, max)` sur les titres  responsive sans media query dédiée.
 - **Responsive** : Mobile-first, breakpoints consolidés à `480px / 580px / 720px / 1024px / 1250px` dans un bloc unique en fin de fichier.
-- **Sidebar sticky** : `position: sticky; top: 60px` en wide (≥1250px) — zéro JavaScript impliqué.
+- **Sidebar sticky** : `position: sticky; top: 60px` en wide (≥1250px)  zéro JavaScript impliqué.
 
 ### Infrastructure de déploiement (pertinent SISR)
 
@@ -96,7 +96,7 @@ Poste local
                               └── URL : https://votre-pseudo.netlify.app
 ```
 
-**Protocole de déploiement actuel** : manuel via drag & drop Netlify après validation locale. Zéro CI/CD automatisé — déploiement déclenché intentionnellement.
+**Protocole de déploiement actuel** : manuel via drag & drop Netlify après validation locale. Zéro CI/CD automatisé  déploiement déclenché intentionnellement.
 
 ---
 
@@ -104,11 +104,11 @@ Poste local
 
 ### Routage SPA sans framework
 
-Navigation entre 8 sections (`À propos`, `Parcours`, `Stage`, `Certifications`, `Veille`, `Outils`, `Matériel`, `Portfolio`) sans rechargement de page. Historique non géré (pas de `history.pushState`) — choix délibéré pour un portfolio statique sans backend.
+Navigation entre 8 sections (`À propos`, `Parcours`, `Stage`, `Certifications`, `Veille`, `Outils`, `Matériel`, `Portfolio`) sans rechargement de page. Historique non géré (pas de `history.pushState`)  choix délibéré pour un portfolio statique sans backend.
 
 ### Système de thème dual-mode
 
-Persistance via `localStorage`. Basculement de la classe `dark-mode` sur `<body>` via un script inline dans `index.html`. Transition CSS sur `background-color` et `color` à `0.35s ease` — zéro flash au rechargement.
+Persistance via `localStorage`. Basculement de la classe `dark-mode` sur `<body>` via un script inline dans `index.html`. Transition CSS sur `background-color` et `color` à `0.35s ease`  zéro flash au rechargement.
 
 ### Accordéon expandable (CSS Grid Trick)
 
@@ -125,11 +125,11 @@ Révélation de contenu sans hauteur hardcodée :
 }
 ```
 
-Aucun `getBoundingClientRect`, aucun `reflow` JS. Délégation d'événement unique sur le container parent — O(1) peu importe le nombre de cartes.
+Aucun `getBoundingClientRect`, aucun `reflow` JS. Délégation d'événement unique sur le container parent  O(1) peu importe le nombre de cartes.
 
 ### Filtres Portfolio
 
-Filtrage par catégorie (`Windows`, `Linux`, `Réseau`…) via `data-filter` attributes. Animation `scaleUp` à l'apparition des items — `transform + opacity` uniquement.
+Filtrage par catégorie (`Windows`, `Linux`, `Réseau`…) via `data-filter` attributes. Animation `scaleUp` à l'apparition des items  `transform + opacity` uniquement.
 
 ---
 
@@ -149,7 +149,7 @@ Filtrage par catégorie (`Windows`, `Linux`, `Réseau`…) via `data-filter` att
 
 ### 1. Récupérer le code source
 
-**Méthode A — Téléchargement direct depuis les Releases (recommandée, sans Git)**
+**Méthode A  Téléchargement direct depuis les Releases (recommandée, sans Git)**
 
 Aucun terminal requis. Rendez-vous sur la page **Releases** du dépôt GitHub, téléchargez l'archive au format de votre choix, puis extrayez-la dans le dossier de votre choix :
 
@@ -159,7 +159,7 @@ Aucun terminal requis. Rendez-vous sur la page **Releases** du dépôt GitHub, t
 | `.tar.gz` | `tar -xzf portfolio-template-sisr.tar.gz` |
 | `.7z` | 7-Zip (Windows) ou `7z x portfolio-template-sisr.7z` |
 
-**Méthode B — Clone Git**
+**Méthode B  Clone Git**
 
 ```bash
 git clone https://github.com/votre-pseudo/portfolio-template-sisr.git
@@ -174,11 +174,11 @@ cd portfolio-template-sisr
 > **Pourquoi Live Server est obligatoire** : les modules ES6 natifs (`import/export`) sont bloqués par la politique CORS des navigateurs lorsque les fichiers sont ouverts en `file://`. Un serveur HTTP local contourne cette restriction. Live Server en est un.
 
 ```bash
-# Alternative A — Node.js disponible
+# Alternative A  Node.js disponible
 npx serve .
 # → http://localhost:3000
 
-# Alternative B — Python disponible
+# Alternative B  Python disponible
 python -m http.server 8080
 # → http://localhost:8080
 ```
@@ -218,7 +218,7 @@ Format recommandé pour l'avatar : `.webp`, 150×150px minimum, fond transparent
 1. Se connecter sur [app.netlify.com](https://app.netlify.com)
 2. Aller dans "Sites" → "Add new site" → "Deploy manually"
 3. Glisser-déposer le dossier racine du projet
-4. URL générée automatiquement — personnalisable dans les paramètres du site
+4. URL générée automatiquement  personnalisable dans les paramètres du site
 
 **Méthode CLI**
 
@@ -228,7 +228,7 @@ netlify login
 netlify deploy --prod --dir .
 ```
 
-## `  ⚪  `︲Workflow OpenCode — Modifications sans terminal
+## `  ⚪  `︲Workflow OpenCode  Modifications sans terminal
 
 > OpenCode est un agent de développement IA qui opère directement sur les fichiers du projet. Il permet de modifier, d'étendre et de déboguer le portfolio en langage naturel, sans manipuler le code manuellement.
 
@@ -283,7 +283,7 @@ Règles du projet :
 
 ---
 
-## `  ⚪  `︲Workflow Claude — Modifications et nouvelles fonctionnalités
+## `  ⚪  `︲Workflow Claude  Modifications et nouvelles fonctionnalités
 
 > Claude peut être utilisé directement depuis [claude.ai](https://claude.ai) pour modifier le portfolio, intégrer de nouveaux projets ou implémenter de nouvelles fonctionnalités. La fonctionnalité **Projets** permet de connecter le dépôt GitHub directement à Claude, lui fournissant automatiquement tout le contexte technique nécessaire.
 
@@ -297,9 +297,9 @@ Sur [claude.ai](https://claude.ai), aller dans "Projets" → "Nouveau projet". N
 
 Dans le panneau latéral du projet, ouvrir la section **Project Knowledge** → cliquer sur "+" → sélectionner **GitHub**. Authentifier le compte GitHub via le flux OAuth si ce n'est pas déjà fait, puis rechercher et connecter le dépôt du portfolio.
 
-Cette connexion donne à Claude les droits de **lecture** sur l'ensemble des fichiers du projet — `data.js`, `main.js`, `style.css`, `index.html`. Claude dispose ainsi automatiquement de tout le contexte architectural nécessaire pour répondre avec précision, sans qu'il soit nécessaire de coller le contenu des fichiers dans chaque message.
+Cette connexion donne à Claude les droits de **lecture** sur l'ensemble des fichiers du projet  `data.js`, `main.js`, `style.css`, `index.html`. Claude dispose ainsi automatiquement de tout le contexte architectural nécessaire pour répondre avec précision, sans qu'il soit nécessaire de coller le contenu des fichiers dans chaque message.
 
-> **Limitation technique — lecture seule** : Claude ne peut pas écrire directement dans les fichiers ni pousser (`push`) de modifications sur le dépôt. Les suggestions de code retournées par Claude doivent être copiées manuellement et appliquées dans l'éditeur (VSCodium), puis sauvegardées — Live Server rafraîchit automatiquement.
+> **Limitation technique  lecture seule** : Claude ne peut pas écrire directement dans les fichiers ni pousser (`push`) de modifications sur le dépôt. Les suggestions de code retournées par Claude doivent être copiées manuellement et appliquées dans l'éditeur (VSCodium), puis sauvegardées  Live Server rafraîchit automatiquement.
 
 ### Cas d'usage typiques
 
@@ -309,7 +309,7 @@ Cette connexion donne à Claude les droits de **lecture** sur l'ensemble des fic
 | Ajouter une certification | "Ajoute une certification obtenue dans certificationsData : nom 'Cisco CCNA', émetteur 'Cisco', date '2025'" |
 | Modifier le texte À propos | "Réécris aboutData.text avec ces informations : …" |
 | Ajouter une compétence | "Ajoute la compétence 'Virtualisation' à 65% dans resumeData.skills" |
-| Implémenter une nouvelle fonctionnalité | Décrire le comportement attendu — Claude lit les fichiers concernés via la connexion GitHub et retourne le delta à appliquer |
+| Implémenter une nouvelle fonctionnalité | Décrire le comportement attendu  Claude lit les fichiers concernés via la connexion GitHub et retourne le delta à appliquer |
 
 ### Règles à transmettre à Claude pour ce projet
 
@@ -333,10 +333,10 @@ Règles du projet :
 
 ```
 Frontend    : HTML5 · CSS3 Custom Properties · JS ES6+ Modules (import/export natif)
-Animations  : CSS @keyframes (transform + opacity — GPU-safe uniquement)
+Animations  : CSS @keyframes (transform + opacity  GPU-safe uniquement)
 Icons       : Ionicons 5.5.2 (ESM, chargé via unpkg CDN)
-Fonts       : Google Fonts — Poppins (300/400/500/600)
-Hosting     : Netlify (Manual Deploy — HTTPS — CDN Edge)
+Fonts       : Google Fonts  Poppins (300/400/500/600)
+Hosting     : Netlify (Manual Deploy  HTTPS  CDN Edge)
 Versioning  : GitHub
 ```
 ---
